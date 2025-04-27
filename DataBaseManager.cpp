@@ -1,0 +1,41 @@
+#include "DataBaseManager.h"
+
+
+
+DataBaseManager::DataBaseManager() {}
+DataBaseManager::DataBaseManager(string filename){
+	filePATH = filename;
+}
+
+string DataBaseManager::getFileName() {
+	return filePATH;
+
+}
+
+void DataBaseManager::writeRecord(Product p) {
+
+	
+
+	ofstream file(filePATH, ios::binary | ios::app);
+	if (file.is_open()) {
+		file.write(reinterpret_cast<char*>(&p), sizeof(Product));
+		file.close();
+		cout << "Product saved to database..." << endl;
+	}
+
+}
+void DataBaseManager::readRecord() {
+
+	ifstream file(filePATH, ios::binary);
+	Product p;
+	if (file.is_open()) {
+		while (file.read(reinterpret_cast<char*>(&p), sizeof(Product))) {
+			p.displayProductDetails();
+		
+		}
+	
+		file.close();
+	}
+	
+
+}
