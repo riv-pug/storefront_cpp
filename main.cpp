@@ -1,4 +1,4 @@
-#include "Admin.h"
+﻿#include "Admin.h"
 #include "Customer.h"
 #include "Product.h"
 #include "DataBaseManager.h"
@@ -27,7 +27,7 @@ void trendingOptions();
 vector<UserRecord> loadUsers();
 void saveUser(UserRecord user);
 void saveOrder(string username, vector<Product> purchasedItems, float total);
-//void viewAllOrders();
+
 
 int main() {
     srand(static_cast<unsigned int>(time(0))); // Seed random for product ID generation
@@ -66,7 +66,7 @@ int main() {
             }
         }
 
-        // If user does not exist ? create + save
+        // If user does not exist → create + save
         if (!userFound) {
             cout << "New user. Creating account.\n";
             UserRecord newUser = { type, username, password };
@@ -77,12 +77,12 @@ int main() {
         // ------------------ ADMIN ------------------
         if (type == "Admin" || type == "admin") {
             Admin admin(username, password);
-            admin.login();
+           // admin.login();
 
             bool adminSession = true;
             while (adminSession) {
                 cout << "\n[Admin Options]\n";
-                cout << "1. Manage Products\n";
+                cout << "1. Add Products\n";
                 cout << "2. Manage Users\n";
                 cout << "3. View Orders\n";
                 cout << "4. Logout\n";
@@ -91,7 +91,7 @@ int main() {
                 cin >> choice;
 
                 if (choice == 1) {
-                    admin.manageProducts();
+                   
 
                     DataBaseManager db("products.dat");
                     string pname, pdesc;
@@ -280,42 +280,3 @@ void saveOrder(string username, vector<Product> purchasedItems, float total) {
     outFile.close();
 }
 
-// Load and view all orders
-//void viewAllOrders() {
-//    ifstream inFile(ORDER_FILE, ios::binary);
-//    if (!inFile.is_open()) {
-//        cout << "No orders found.\n";
-//        return;
-//    }
-//
-//    while (!inFile.eof()) {
-//        int nameLength;
-//        if (!inFile.read(reinterpret_cast<char*>(&nameLength), sizeof(nameLength))) break;
-//
-//        string username;
-//        username.resize(nameLength);
-//        inFile.read(&username[0], nameLength);
-//
-//        float total;
-//        inFile.read(reinterpret_cast<char*>(&total), sizeof(total));
-//
-//        int itemCount;
-//        inFile.read(reinterpret_cast<char*>(&itemCount), sizeof(itemCount));
-//
-//        vector<Product> products;
-//        for (int i = 0; i < itemCount; ++i) {
-//            Product p;
-//            inFile.read(reinterpret_cast<char*>(&p), sizeof(Product));
-//            products.push_back(p);
-//        }
-//
-//        cout << "\nUsername: " << username << endl;
-//        for (Product p : products) {
-//            p.displayProductDetails();
-//        }
-//        cout << "Total: $" << total << endl;
-//        cout << "---------------------------" << endl;
-//    }
-//
-//    inFile.close();
-//}
