@@ -14,18 +14,15 @@ string DataBaseManager::getFileName() {
 
 void DataBaseManager::writeRecord(Product p) {
 
-	
-
 	ofstream file(filePATH, ios::binary | ios::app);
 	if (file.is_open()) {
 		file.write(reinterpret_cast<char*>(&p), sizeof(Product));
 		file.close();
-		cout << "Product saved to database..." << endl;
+		cout << "Writing Product Info to file..." << endl;
 	}
-
 }
 void DataBaseManager::readRecord() {
-
+	cout << "Reading Product Info from file..." << endl;
 	ifstream file(filePATH, ios::binary);
 	Product p;
 	if (file.is_open()) {

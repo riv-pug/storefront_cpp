@@ -13,7 +13,8 @@ class Admin : public User
 public:
 	Admin();
 	Admin(string, string);
-
+	void login()override { cout << "Admin login : " <<username<< endl; }
+	void logout()override { cout << "Admin logout : " <<username<< endl<<endl; }
 	void viewDashBoard()override {
 		cout << "Admin Dashboard for " << username << endl;
 	}

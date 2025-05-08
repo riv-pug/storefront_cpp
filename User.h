@@ -18,12 +18,12 @@ public:
 	User(string, string, string );
 	
 	virtual void login() {
-		cout << "Logging in:  " << username << endl;
+		cout << "Logging in as a User Base Class:  " << username << endl;
 	}
 
 	virtual void logout() {
 	
-		cout << "Logging out: " << username << endl;
+		cout << "Logging out as a User Base Class: " << username << endl;
 	}
 
 	virtual void viewDashBoard() = 0; //pure virtual function
